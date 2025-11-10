@@ -140,7 +140,23 @@ int fatorBalanceamento(NO* no) {
     return alturaNo(no->esq) - alturaNo(no->dir);
 }
 
-NO* girarDireita(NO* y) {  
+NO* girarDireita(NO* y) {
+    NO* x = y->esq;
+    NO* T2 = x->dir;
+
+    
+    x->dir = y;
+    y->esq = T2;
+
+    
+    y->altura = maior(alturaNo(y->esq), alturaNo(y->dir)) + 1;
+    x->altura = maior(alturaNo(x->esq), alturaNo(x->dir)) + 1;
+
+   
+    return x;
+        
+
+
    /* Rotação simples à direita  
              y                x  
             / \              / \  
@@ -156,10 +172,23 @@ NO* girarDireita(NO* y) {
    // Passo 5: Retorne o novo nó raiz ('x').  
 
 	// provisoriamente retorna o ponteiro passado como parâmetro
-	return y; 
 }  
 
 NO* girarEsquerda(NO* x) {  
+
+    NO* y = x->dir;
+    NO* T2 = y->esq;
+
+
+    y->esq = x;
+    x->dir = T2;
+
+    
+    x->altura = maior(alturaNo(x->esq), alturaNo(x->dir)) + 1;
+    y->altura = maior(alturaNo(y->esq), alturaNo(y->dir)) + 1;
+
+
+    return y;
    /* Rotação simples à esquerda  
            x                    y  
           / \                  / \  
